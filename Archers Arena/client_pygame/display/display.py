@@ -231,7 +231,7 @@ class Display(BaseDisplay):
         """
         if self.gamestate != 0:
             self.gamestate = 0
-            pygame.mixer.music.load("load.mp3")
+            pygame.mixer.music.load(os.path.join("display", "Audio", "load.mp3"))
             pygame.mixer.music.set_volume(.20)
             pygame.mixer.music.play(-1)
         # background
@@ -295,7 +295,7 @@ class Display(BaseDisplay):
         if self.gamestate != 1:
             self.gamestate = 1
             pygame.mixer.music.stop()
-            pygame.mixer.music.load("fight.mp3")
+            pygame.mixer.music.load(os.path.join("display", "Audio", "fight.mp3"))
             pygame.mixer.music.play(-1)
         # background
         rect = pygame.Rect(0, 0, self.width, self.height)
@@ -332,7 +332,7 @@ class Display(BaseDisplay):
         if self.gamestate != 2:
             self.gamestate = 2
             pygame.mixer.stop()
-            pygame.mixer.music.load("end.mp3")
+            pygame.mixer.music.load(os.path.join("display", "Audio", "end.mp3"))
             pygame.mixer.music.play()
         rect = pygame.Rect(0, 0, self.width, self.height)
         surface.fill(self.background_color, rect)
@@ -353,15 +353,15 @@ class Display(BaseDisplay):
         """
         import os
         if isinstance(event, MissileFireEvent):
-            shot = pygame.mixer.Sound(os.path.join(os.getcwd(), "shot.wav"))
+            shot = pygame.mixer.Sound(os.path.join(os.getcwd(), "display", "Audio", "shot.wav"))
             shot.set_volume(.5)
             shot.play()
         if isinstance(event, MissileHitEvent):
-            hit = pygame.mixer.Sound(os.path.join(os.getcwd(), "hit.wav"))
+            hit = pygame.mixer.Sound(os.path.join(os.getcwd(), "display", "Audio", "hit.wav"))
             hit.set_volume(.5)
             hit.play()
         if isinstance(event, MissileMisfireEvent):
-            no_mp = pygame.mixer.Sound(os.path.join(os.getcwd(), "no_mp.mp3"))
+            no_mp = pygame.mixer.Sound(os.path.join(os.getcwd(), "display", "Audio", "no_mp.mp3"))
             no_mp.set_volume(.5)
             no_mp.play()
         return
