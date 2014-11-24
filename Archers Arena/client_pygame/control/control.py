@@ -160,27 +160,35 @@ class Control(BaseControl):
 
         elif pygame.K_w in keys and pygame.K_a in keys:
             engine.set_player_direction(225)
+            engine.set_missile_direction(225)
 
         elif pygame.K_w in keys and pygame.K_d in keys:
             engine.set_player_direction(315)
+            engine.set_missile_direction(315)
 
         elif pygame.K_s in keys and pygame.K_d in keys:
             engine.set_player_direction(45)
+            engine.set_missile_direction(45)
 
         elif pygame.K_s in keys and pygame.K_a in keys:
             engine.set_player_direction(135)
+            engine.set_missile_direction(135)
 
         elif pygame.K_w in keys:
             engine.set_player_direction(270)
+            engine.set_missile_direction(270)
 
         elif pygame.K_s in keys:
-            engine.set_player_direction(90)   
+            engine.set_player_direction(90)
+            engine.set_missile_direction(90)   
 
         elif pygame.K_a in keys:
             engine.set_player_direction(180)
+            engine.set_missile_direction(180)
 
         elif pygame.K_d in keys:
             engine.set_player_direction(0)
+            engine.set_missile_direction(0)
 
         else:
             moving = False
