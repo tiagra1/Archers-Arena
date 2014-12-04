@@ -548,16 +548,26 @@ class Display(BaseDisplay):
         # Dear self,
         #    I was tired and they made me write this.
         # I apologize.
-        #    - The code monkey nutz
+        #    - The code monkey
         return self.health_images[int(math.ceil(health))]
 
     def get_exp_image(self, exp):
         exp = exp / 4.5
-        return self.exp_image[int(math.ceil(exp))]
+        i = int(math.ceil(exp))
+        if i < 0:
+            i = 0
+        elif i >= len(self.exp_image):
+            i = len(self.exp_image) -1
+        return self.exp_image[i]
 
     def get_pxe_image(self, exp):
         exp = exp / 4.5
-        return self.exp_image[int(math.ceil(exp))]
+        i = int(math.ceil(exp))
+        if i < 0:
+            i = 0
+        elif i >= len(self.pxe_image):
+            i = len(self.pxe_image) -1
+        return self.pxe_image[i]
 
     def get_mana_image(self, mana):
         if mana > 10.0:
