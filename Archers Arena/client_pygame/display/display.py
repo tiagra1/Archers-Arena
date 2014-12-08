@@ -80,6 +80,12 @@ class Display(BaseDisplay):
     BaseDisplay class.  See client/base_display.py.
     
     """
+    """
+    Look for better random feature Ideas
+    such as: 
+    user selected presets in the config file
+    text choices before pre-game that allow map/character/npc customization
+    """
     def randomizer(self):
         return random.choice(range(4)) + 1
 
@@ -152,6 +158,7 @@ class Display(BaseDisplay):
         ]
 
         self.arrow_images = [
+            #pygame.image.load(os.path.join("display", "Arrow Count", "Arrow.png")),
             None,
             pygame.image.load(os.path.join("display", "Arrow Count", "1Arrow.png")),
             pygame.image.load(os.path.join("display", "Arrow Count", "2Arrow.png")),
@@ -260,7 +267,43 @@ class Display(BaseDisplay):
                               self.font)
 
         return
-        
+
+    def paint_selection(self, surface, control):
+        """
+        Draws the display before the user selects the character/map/npc.
+        """
+        if self.gamestate != 0:
+            self.gamestate = 0
+            pygame.mixer.music.load(os.path.join("display", "Audio", "load.mp3"))
+            pygame.mixer.music.set_volume(.20)
+            pygame.mixer.music.play(-1)
+        # background
+        rect = pygame.Rect(0, 0, self.width, self.height)
+        surface.blit(self.Menu_image, (0,0))
+        # text message in center of screen
+        s = "Archers Arena"
+        self.draw_text_center(surface, s, self.text_color,
+                              175, 250,
+                              self.title_font)
+        s = "Press 's' for single player"
+        self.draw_text_center(surface, s, self.text_color,
+                              175, 270 + 3*self.font_size/2,
+                              self.font)
+        s = "Press 'd' for dual player"
+        self.draw_text_center(surface, s, self.text_color,
+                              175, 280 + 6*self.font_size/2,
+                              self.font)
+        s = "Press 't' for tournament"
+        self.draw_text_center(surface, s, self.text_color,
+                              175, 290 + 9*self.font_size/2,
+                              self.font)
+        s = "Press 'esc' to quit"
+        self.draw_text_center(surface, s, self.text_color,
+                              175, 300 + 12*self.font_size/2,
+                              self.font)
+
+        return
+
     def paint_waiting_for_game(self, surface, engine, control):
         """
         Draws the display after user selects the game type, before the game begins.
@@ -425,6 +468,7 @@ class Display(BaseDisplay):
                         if self.image_count <= 4:
                             surface.blit(self.player_image_leftidle, (obj.get_px(), obj.get_py()))
                             self.image_count += 1
+
                         elif 4 < self.image_count <= 9:
                             self.image_count += 1
                             surface.blit(self.player_image_left1, (obj.get_px(), obj.get_py()))
