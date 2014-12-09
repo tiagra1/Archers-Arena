@@ -268,39 +268,32 @@ class Display(BaseDisplay):
 
         return
 
-    def paint_selection(self, surface, control):
+    def paint_mapselect(self, surface, control):
         """
         Draws the display before the user selects the character/map/npc.
         """
-        if self.gamestate != 0:
-            self.gamestate = 0
-            pygame.mixer.music.load(os.path.join("display", "Audio", "load.mp3"))
-            pygame.mixer.music.set_volume(.20)
-            pygame.mixer.music.play(-1)
         # background
         rect = pygame.Rect(0, 0, self.width, self.height)
         surface.blit(self.Menu_image, (0,0))
         # text message in center of screen
-        s = "Archers Arena"
+        s = "Press 'g' for Outside Grass map"
         self.draw_text_center(surface, s, self.text_color,
                               175, 250,
                               self.title_font)
-        s = "Press 's' for single player"
+        s = "Press 'x' for Desert map"
+        self.draw_text_center(surface, s, self.text_color,
+                              175, 260 + 3*self.font_size/2,
+                              self.font)
+        s = "Press 'd' for Dungeon map"
         self.draw_text_center(surface, s, self.text_color,
                               175, 270 + 3*self.font_size/2,
                               self.font)
-        s = "Press 'd' for dual player"
+        s = "Press 'e' for Stone map"
         self.draw_text_center(surface, s, self.text_color,
                               175, 280 + 6*self.font_size/2,
                               self.font)
-        s = "Press 't' for tournament"
-        self.draw_text_center(surface, s, self.text_color,
-                              175, 290 + 9*self.font_size/2,
-                              self.font)
-        s = "Press 'esc' to quit"
-        self.draw_text_center(surface, s, self.text_color,
-                              175, 300 + 12*self.font_size/2,
-                              self.font)
+        
+        
 
         return
 

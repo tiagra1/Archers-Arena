@@ -102,6 +102,21 @@ class Control(BaseControl):
         elif pygame.K_v in newkeys:
             self.set_state(CONTROL_STATE_WANT_VIEW)
         return
+
+    def mapselect_control(self, engine, keys, newkeys, buttons, newbuttons, mouse_position):
+        #controls the map select
+        """
+        if pygame.K_g in newkeys:
+            self.set_state(CONTROL_STATE_WANT_DUAL)
+        elif pygame.K_d in newkeys:
+            self.set_state(CONTROL_STATE_WANT_SINGLE)
+        elif pygame.K_e in newkeys:
+            self.set_state(CONTROL_STATE_WANT_TOURNAMENT)
+        elif pygame.K_x in newkeys:
+            self.set_state(CONTROL_STATE_WANT_TOURNAMENT)
+        """
+            
+        return
         
     def game_input_control(self, engine, keys, newkeys, buttons, newbuttons, mouse_position):
         """
