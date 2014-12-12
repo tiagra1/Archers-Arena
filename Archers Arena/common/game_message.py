@@ -24,6 +24,8 @@ M_GAME_OVER       = "GAME_OVER"
 M_CLOSED         = "CLOSED"
 M_BAD_COMMAND    = "BAD_COMMAND"
 M_EAGAIN         = "EAGAIN"
+#M_REQUEST_SELECT = "REQUEST_SELECT"
+#M_WAIT_FOR_SELECT = "WAIT_FOR_SELECT"
 
 ####################################################################        
         

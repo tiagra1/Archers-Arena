@@ -1,0 +1,5 @@
+I added some ground work for the eventual Selection mode, had to comment it 
+out though. Should be left alone until we can get our hands on the server.
+I think we should focus on the Xp level up bonuses and fixing our animations.
+~Matt
+

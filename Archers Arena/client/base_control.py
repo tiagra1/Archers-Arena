@@ -8,6 +8,7 @@ CONTROL_STATE_WANT_SINGLE = 2
 CONTROL_STATE_HAVE_ENGINE = 3
 CONTROL_STATE_WANT_TOURNAMENT = 4
 CONTROL_STATE_WANT_VIEW = 5
+#CONTROL_STATE_WANT_SELECT = 6
 
 class BaseControl:
     """
@@ -62,7 +63,8 @@ class BaseControl:
         elif (self.state == CONTROL_STATE_WANT_DUAL or
               self.state == CONTROL_STATE_WANT_SINGLE or
               self.state == CONTROL_STATE_WANT_TOURNAMENT or
-              self.state == CONTROL_STATE_WANT_VIEW):
+              self.state == CONTROL_STATE_WANT_VIEW): #or 
+              #self.state == CONTROL_STATE_WANT_SELECT:
             # we know what the user wants and we're waiting for the game to start
             if engine:
                 # if we have a game engine, then the game has begun

@@ -36,6 +36,8 @@ class PygameClient(PygameSocketGame):
             self.new_game(game_engine.MODE_TOURNAMENT)
         elif self.control.get_state() == CONTROL_STATE_WANT_VIEW:
             self.new_game(game_engine.MODE_VIEW)
+        #elif self.control.get_state() == CONTROL_STATE_WANT_SELECT:
+            self.new_game(game_engine.MODE_SELECT)
         
         if self.engine and self.engine.get_data().get_game_over():
             self.game_over_pause += 1

@@ -6,6 +6,7 @@ import random
 import os
 import math
 import pygame
+#from opts import 
 from config import *
 from common.event import *
 from client.base_display import BaseDisplay
@@ -268,7 +269,7 @@ class Display(BaseDisplay):
 
         return
 
-    def paint_mapselect(self, surface, control):
+    def paint_selection(self, surface, control):
         """
         Draws the display before the user selects the character/map/npc.
         """
@@ -276,19 +277,19 @@ class Display(BaseDisplay):
         rect = pygame.Rect(0, 0, self.width, self.height)
         surface.blit(self.Menu_image, (0,0))
         # text message in center of screen
-        s = "Press 'g' for Outside Grass map"
+        s = "Press 'i' for Outside Grass map"
         self.draw_text_center(surface, s, self.text_color,
                               175, 250,
                               self.title_font)
-        s = "Press 'x' for Desert map"
+        s = "Press 'j' for Desert map"
         self.draw_text_center(surface, s, self.text_color,
                               175, 260 + 3*self.font_size/2,
                               self.font)
-        s = "Press 'd' for Dungeon map"
+        s = "Press 'k' for Dungeon map"
         self.draw_text_center(surface, s, self.text_color,
                               175, 270 + 3*self.font_size/2,
                               self.font)
-        s = "Press 'e' for Stone map"
+        s = "Press 'l' for Stone map"
         self.draw_text_center(surface, s, self.text_color,
                               175, 280 + 6*self.font_size/2,
                               self.font)

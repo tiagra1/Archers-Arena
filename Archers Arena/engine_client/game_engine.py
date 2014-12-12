@@ -50,6 +50,7 @@ MODE_SINGLE = 2
 MODE_AI = 3
 MODE_TOURNAMENT = 4
 MODE_VIEW = 5
+MODE_SELECT = 6
 
 class ClientGameEngine:
     """
@@ -148,8 +149,12 @@ class ClientGameEngine:
                         self.add_message(RequestAiMessage())
                     elif self.desired_mode == MODE_VIEW:
                         self.add_message(RequestViewMessage())
+                    #elif self.desired_mode == MODE_SELECT:
+                        self.add_message(RequestSelectMessage())
                     else:
                         self.logger.error("Unknown mode: %d", self.desired_mode)
+            #elif code == M_WAIT_FOR_SELECTION:
+               # self.data.set_waiting_for_selection()
             elif code == M_WAIT_FOR_DUAL:
                 self.data.set_waiting_for_dual()
             elif code == M_WAIT_FOR_SINGLE:
