@@ -88,7 +88,10 @@ class Display(BaseDisplay):
     text choices before pre-game that allow map/character/npc customization
     """
     def randomizer(self):
-        return random.choice(range(4)) + 1
+        if MAP_SELECTION not in (range(1, 5)):
+            return random.choice(range(4)) + 1
+        else:
+            return MAP_SELECTION
 
     def __init__(self, width, height):
         """
@@ -159,8 +162,7 @@ class Display(BaseDisplay):
         ]
 
         self.arrow_images = [
-            #pygame.image.load(os.path.join("display", "Arrow Count", "Arrow.png")),
-            None,
+            pygame.image.load(os.path.join("display", "Arrow Count", "0Arrow.png")),
             pygame.image.load(os.path.join("display", "Arrow Count", "1Arrow.png")),
             pygame.image.load(os.path.join("display", "Arrow Count", "2Arrow.png")),
             pygame.image.load(os.path.join("display", "Arrow Count", "3Arrow.png")),
@@ -225,8 +227,8 @@ class Display(BaseDisplay):
         self.missile_image_down = pygame.image.load(os.path.join("display", "Arrows", "Arrow_down.png"))
         self.missile_image_left = pygame.image.load(os.path.join("display", "Arrows", "Arrow_left.png"))
         self.missile_image_right = pygame.image.load(os.path.join("display", "Arrows", "Arrow_right.png"))
-        self.npc_image1 = pygame.image.load(os.path.join("display", "Eggefant", "eggefant.png"))
-        self.npc_image2 = pygame.image.load(os.path.join("display", "Eggefant", "eggefant2.png"))
+        self.npc_image1 = pygame.image.load(os.path.join("display", "NPC", "Eggefant", "eggefant.png"))
+        self.npc_image2 = pygame.image.load(os.path.join("display", "NPC", "Eggefant", "eggefant2.png"))
         self.wall_image = pygame.image.load(os.path.join("display", "Wall.png"))
         self.background_image = pygame.image.load(os.path.join("display", "Background00%s.png" % self.randomizer() )) 
         self.Menu_image = pygame.image.load(os.path.join("display", "Menu.png"))
@@ -423,7 +425,67 @@ class Display(BaseDisplay):
         if obj.is_alive():
             color = self.npc_color
             rect = self.obj_to_rect(obj)
-            surface.blit(self.npc_image1, (obj.get_px(), obj.get_py()))
+            if obj.get_dx() < 0:
+                if abs(obj.get_dx()) >= abs(obj.get_dy()):
+                     #left
+                    if self.image_count <= 4:
+                        surface.blit(self.npc_image1, (obj.get_px(), obj.get_py()))
+                        self.image_count += 1
+                    elif 4 < self.image_count <= 9:
+                        self.image_count += 1
+                        surface.blit(self.npc_image2, (obj.get_px(), obj.get_py()))
+                    elif 9 < self.image_count <= 14:
+                        self.image_count += 1
+                        surface.blit(self.npc_image1, (obj.get_px(), obj.get_py()))
+                    elif 14 < self.image_count <= 19:
+                        self.image_count += 1
+                        surface.blit(self.npc_image2, (obj.get_px(), obj.get_py()))
+                    if self.image_count > 19:
+                        self.image_count = 0
+                else:
+                    #up
+                    if self.image_count <= 5:
+                        surface.blit(self.npc_image1, (obj.get_px(), obj.get_py()))
+                        self.image_count += 1
+                    if self.image_count <= 10:
+                        surface.blit(self.npc_image2, (obj.get_px(), obj.get_py()))
+                        self.image_count += 1
+                    if self.image_count > 10:
+                        surface.blit(self.npc_image1, (obj.get_px(), obj.get_py()))
+                        self.image_count = 0
+            elif obj.get_x() > 0:
+                if abs(obj.get_dx()) >= abs(obj.get_dy()):
+                    #right
+                    if self.image_count <= 4:
+                        surface.blit(self.npc_image1, (obj.get_px(), obj.get_py()))
+                        self.image_count += 1
+                    elif 4 < self.image_count <= 9:
+                        self.image_count += 1
+                        surface.blit(self.npc_image2, (obj.get_px(), obj.get_py()))
+                    elif 9 < self.image_count <= 14:
+                        self.image_count += 1
+                        surface.blit(self.npc_image1, (obj.get_px(), obj.get_py()))
+                    elif 14 < self.image_count <= 19:
+                        self.image_count += 1
+                        surface.blit(self.npc_image2, (obj.get_px(), obj.get_py()))
+                    if self.image_count > 19:
+                        self.image_count = 0
+                else:
+                    #down
+                    if self.image_count <= 4:
+                        surface.blit(self.npc_image1, (obj.get_px(), obj.get_py()))
+                        self.image_count += 1
+                    elif 4 < self.image_count <= 9:
+                        self.image_count += 1
+                        surface.blit(self.npc_image2, (obj.get_px(), obj.get_py()))
+                    elif 9 < self.image_count <= 14:
+                        self.image_count += 1
+                        surface.blit(self.npc_image1, (obj.get_px(), obj.get_py()))
+                    elif 14 < self.image_count <= 19:
+                        self.image_count += 1
+                        surface.blit(self.npc_image2, (obj.get_px(), obj.get_py()))
+                    if self.image_count > 19:
+                        self.image_count = 0   
         return
         
     def paint_missile(self, surface, engine, control, obj):
@@ -446,6 +508,10 @@ class Display(BaseDisplay):
                 #facing down
                 surface.blit(self.missile_image_down, (obj.get_px(), obj.get_py()))
         return
+
+    def moving():
+        """In theory this should fix our animations"""
+
         
     def paint_player(self, surface, engine, control, obj):
         """
@@ -616,7 +682,7 @@ class Display(BaseDisplay):
     def get_arrow_image(self, arrows):
         if arrows > 10.0:
             arrows = 10.0
-        return self.arrow_images[int(math.ceil(arrows))]
+        return self.arrow_images[int(math.floor(arrows))]
 
     def paint_game_status(self, surface, engine, control):
         """

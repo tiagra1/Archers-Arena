@@ -28,3 +28,6 @@ WINDOW_WIDTH       = FIELD_WIDTH + 0
 STATUS_BAR_HEIGHT  = 60
 # How tall the window is.  This doesn't change the height of the game.
 WINDOW_HEIGHT      = FIELD_HEIGHT + STATUS_BAR_HEIGHT
+
+#Hopefully this will be where the 'Random' map/Selections will be held until we can access the server
+MAP_SELECTION  = 2
