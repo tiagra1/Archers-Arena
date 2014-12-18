@@ -426,8 +426,8 @@ class Display(BaseDisplay):
             color = self.npc_color
             rect = self.obj_to_rect(obj)
             if obj.get_dx() < 0:
+                # Going right
                 if abs(obj.get_dx()) >= abs(obj.get_dy()):
-                     #left
                     if self.image_count <= 4:
                         surface.blit(self.npc_image1, (obj.get_px(), obj.get_py()))
                         self.image_count += 1
